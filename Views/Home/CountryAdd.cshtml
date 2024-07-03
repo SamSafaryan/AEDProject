@@ -1,0 +1,66 @@
+﻿@using AEDProject.ViewModels;
+@using AEDProject.Entities.Enums;
+@model CountryViewModel
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="/Images/Icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('/images/bg-03.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="post" enctype="multipart/form-data">
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Add Country
+					</span>
+					<div class="wrap-input100 validate-input" data-validate="Name">
+						<input class="input100" placeholder="Name" asp-for="Name" />
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					@foreach (DocTypeViewModel item in ViewBag.DocTypes)
+					{
+						<div>
+							<label>
+
+
+								<input type="checkbox" value="@item.Id" name="DocTypeIds" checked="@(Model.DocTypeIds!= null && Model.DocTypeIds.Contains(item.Id)?"checked":null)" />
+								
+								@item.Name
+							</label>
+						</div>
+					}
+					@if (ViewBag.ErrorMessage != null)
+					{
+						<div>
+							<p style="color:red;">@ViewBag.ErrorMessage</p>
+						</div>
+					}
+					<span asp-validation-for="DocTypeIds"></span>
+					<input type="submit" value="Submit" class="btn btn-primary btn-sm float-end">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+	<script src="js/main1.js"></script>
+
+</body>
+</html>

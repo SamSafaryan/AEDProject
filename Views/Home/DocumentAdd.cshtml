@@ -1,0 +1,148 @@
+﻿@using AEDProject.ViewModels;
+@using AEDProject.Entities.Enums;
+@model DocumentAddEditViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/Images/Icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/images/bg-03.jpg');">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" method="post" enctype="multipart/form-data">
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Add Document
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <input class="input100" placeholder="String ID" asp-for="strId" />
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label>
+                            Date of birth
+                            <input class="input100" placeholder="DOB" asp-for="DOB" />
+                        </label>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label> ISS <input class="input100" placeholder="ISS" asp-for="ISS" /></label>
+
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label>EXP<input class="input100" placeholder="EXP" asp-for="EXP" /></label>
+
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label>
+                            All angels
+                            <input class="input100" asp-for="AllAngels" />
+                        </label>
+
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label>Have selfie<input class="input100" asp-for="HaveSelfie" /></label>
+
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Name">
+                        <label>
+                            SSN
+                            <input class="input100" asp-for="SSN" />
+                        </label>
+
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+
+
+
+                    <label asp-for="CountryId">Country</label>
+                    <select onchange="FillDocTypes(this, 'lstCountry')" asp-for="CountryId">
+                        <option>select</option>
+                        @foreach (CountryViewModel item in ViewBag.Countries)
+                        {
+                            <option id="lstModel"  value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <label asp-for="DocumentTypeId">Document Type</label>
+                    <select asp-for="DocumentTypeId">
+                        <option>select</option>
+                        @foreach (DocTypeViewModel item in ViewBag.DocTypess)
+                        {
+                            <option id="lstDocTypeId" value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                   
+
+
+
+
+
+
+
+                    <label>
+                        Sex
+                        <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control form-control-lg"></select>
+                    </label>
+                    <label>
+                        Sides
+                        <select asp-for="Sides" asp-items="Html.GetEnumSelectList<Sides>()" class="form-control form-control-lg"></select>
+                    </label>
+
+                    <input type="file" name="Files" multiple />
+                    @if (ViewBag.Message != null)
+                    {
+                        <div>
+                            <p style="color:red;">@ViewBag.Message</p>
+                        </div>
+                    }
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div>
+                            <p style="color:red;">@ViewBag.ErrorMessage</p>
+                        </div>
+                    }
+                    <div class="image">
+                        @if (Model.Images != null)
+                        {
+                            foreach (var image in Model.Images)
+                            {
+                                <label style="display:block;">
+                                    <input type="checkbox" value="@image.Id" name="ImageIds" />
+                                    <img src="/Home/ImageById/@image.Id" class="nkar1" />
+                                </label>
+                            }
+                        }
+                    </div>
+                    <input type="submit" value="Submit" class="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <div id="dropDownSelect1"></div>
+    <script src="/js/site.js"></script>
+    
+</body>
+</html>

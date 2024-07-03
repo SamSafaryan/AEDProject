@@ -1,0 +1,70 @@
+﻿@using AEDProject.ViewModels;
+@model DocTypeViewModel;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="/css/userlist.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <title>UserList</title>
+</head>
+<body>
+    <a asp-action="DocTypeAdd">Add document type</a>
+
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                    <tr>
+                                        <th><span>Id</span></th>
+                                        <th><span>Name</span></th>
+                                        <th><span>Countries</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.AllDocTypes)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="label label-default">@item.Id</span>
+                                            </td>
+                                            <td>
+                                                <span class="label label-default">@item.Name</span>
+                                            </td>
+                                            <td>
+                                                <span class="label label-default">@item.CountryName </span>
+                                            </td>
+                                            <td style="width: 20%;">
+                                                <a href="#" class="table-link text-warning">
+                                                </a>
+                                                <a asp-action="DocTypeAdd" asp-route-id="@item.Id" class="table-link text-info">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a asp-action="DocTypeDelete" asp-controller="Home" asp-route-Id="@item.Id" class="table-link danger">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
